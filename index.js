@@ -5,7 +5,7 @@ httpServer.on("listening", () => console.log("Listening...."));
 httpServer.on("request", (req, res) => {
 
     if(req.url === "/"){
-        res.end(fs.readFileSync("index.html"));
+        res.end(fs.readFileSync(__dirname +'/client/index.html'));
         return;
     }
 
