@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html')
 })
 
-app.get('/', (req, res) => {
+app.post('/upload', (req, res) => {
   const fileName = req.headers['file-name']
   req.on('data', chunk => {
     fs.appendFileSync(fileName, chunk)
