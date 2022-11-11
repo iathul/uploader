@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const path = require('path')
@@ -17,5 +18,5 @@ app.post('/upload', (req, res) => {
   res.end('uploaded!')
 })
 
-PORT = 8100
-app.listen(PORT, () => console.log('Server started '))
+PORT = process.env.PORT || 8100
+app.listen(PORT, () => console.log(`Server started at PORT: ${PORT}`))
