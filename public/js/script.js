@@ -6,7 +6,7 @@ upload.addEventListener('click', () => {
   const fileReader = new FileReader()
   const newFile = file.files[0]
   fileReader.onload = async event => {
-    const CHUNK_SIZE = 5000
+    const CHUNK_SIZE = 1000
     const chunkCount = event.target.result.byteLength / CHUNK_SIZE
     console.log('Read successfully')
     const fileName = Math.random() * 1000 + newFile.name
