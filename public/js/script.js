@@ -38,7 +38,6 @@ upload.addEventListener('click', e => {
         },
         body: chunk
       })
-      console.log(Math.round((chunkId * 100) / chunkCount, 0))
       document.getElementById('file-progress').value = Math.round(
         (chunkId * 100) / chunkCount,
         0
