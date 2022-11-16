@@ -1,17 +1,53 @@
 const upload = document.getElementById('upload')
-var fileSelect = document.getElementById('file-upload')
+var fileSelect = document.getElementById('file-upload'),
+  fileDrag = document.getElementById('file-drag')
+
 var newFile
-fileSelect.addEventListener('change', e => {
-  newFile = e.target.files[0]
-  if (newFile) {
+fileDrag.addEventListener('dragover', fileDragHover, false)
+fileDrag.addEventListener('dragleave', fileDragHover, false)
+fileDrag.addEventListener('drop', fileSelectHandler, false)
+
+function fileDragHover(e) {
+  var fileDrag = document.getElementById('file-drag')
+  e.stopPropagation()
+  e.preventDefault()
+  fileDrag.className =
+    e.type === 'dragover' ? 'hover' : 'modal-body file-upload'
+}
+
+function fileSelectHandler(e) {
+  newFile = e.target.files || e.dataTransfer.files
+  fileDragHover(e)
+  for (var i = 0, f; (f = newFile[i]); i++) {
+    parseFile(f)
+  }
+}
+
+function parseFile(file) {
+  var imageName = file.name
+  var isGood = /\.(?=gif|jpg|png|jpeg)/gi.test(imageName)
+  if (isGood) {
     document.getElementById('start').classList.add('hidden')
     document.getElementById('response').classList.remove('hidden')
     document.getElementById('file-image').classList.remove('hidden')
-    document.getElementById('file-image').src = URL.createObjectURL(newFile)
+    document.getElementById('file-image').src = URL.createObjectURL(file)
     document.getElementById('notimage').classList.add('hidden')
     document.getElementById('messages').innerHTML = `<strong> ${encodeURI(
-      newFile.name
+      file.name
     )} </strong>`
+  } else {
+    document.getElementById('file-image').classList.add('hidden')
+    document.getElementById('notimage').classList.remove('hidden')
+    document.getElementById('start').classList.remove('hidden')
+    document.getElementById('response').classList.add('hidden')
+    document.getElementById('file-upload-form').reset()
+  }
+}
+
+fileSelect.addEventListener('change', e => {
+  newFile = e.target.files[0]
+  if (newFile) {
+    parseFile(newFile)
   }
 })
 
@@ -32,7 +68,6 @@ upload.addEventListener('click', e => {
   e.preventDefault()
   document.getElementById('progress-grp').classList.remove('hidden')
   const fileReader = new FileReader()
-  fileReader.readAsArrayBuffer(newFile)
   fileReader.onload = async event => {
     const CHUNK_SIZE = 1000
     const chunkCount = Math.round(event.target.result.byteLength / CHUNK_SIZE)
@@ -48,4 +83,5 @@ upload.addEventListener('click', e => {
       document.getElementById('progress-text').textContent = `${progressStat} %`
     }
   }
+  fileReader.readAsArrayBuffer(newFile)
 })
