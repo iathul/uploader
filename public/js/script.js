@@ -15,10 +15,24 @@ fileSelect.addEventListener('change', e => {
   }
 })
 
+// Send chunk to server
+async function uploadFile(chunk, fileName) {
+  await fetch('http://localhost:8100/upload', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/octet-stream',
+      'content-length': chunk.length,
+      'file-name': fileName
+    },
+    body: chunk
+  })
+}
+
 upload.addEventListener('click', e => {
   e.preventDefault()
   document.getElementById('progress-grp').classList.remove('hidden')
   const fileReader = new FileReader()
+  fileReader.readAsArrayBuffer(newFile)
   fileReader.onload = async event => {
     const CHUNK_SIZE = 1000
     const chunkCount = Math.round(event.target.result.byteLength / CHUNK_SIZE)
@@ -28,21 +42,10 @@ upload.addEventListener('click', e => {
         chunkId * CHUNK_SIZE,
         chunkId * CHUNK_SIZE + CHUNK_SIZE
       )
-      await fetch('http://localhost:8100/upload', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/octet-stream',
-          'content-length': chunk.length,
-          'file-name': fileName
-        },
-        body: chunk
-      })
-      document.getElementById('file-progress').value = Math.round(
-        (chunkId * 100) / chunkCount
-      )
-      document.getElementById('progress-text').textContent =
-        Math.round((chunkId * 100) / chunkCount) + '%'
+      await uploadFile(chunk, fileName)
+      var progressStat = Math.round((chunkId * 100) / chunkCount)
+      document.getElementById('file-progress').value = progressStat
+      document.getElementById('progress-text').textContent = `${progressStat} %`
     }
   }
-  fileReader.readAsArrayBuffer(newFile)
 })
