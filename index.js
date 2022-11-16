@@ -20,7 +20,7 @@ app.post('/upload', (req, res) => {
     fs.appendFileSync(`${fileDir}/${fileName}`, chunk)
   })
   return res.status(200).json({
-    message: 'File uploaded successfully.'
+    message: 'Chunk received successfully.'
   })
 })
 
