@@ -21,8 +21,8 @@ upload.addEventListener('click', e => {
   const fileReader = new FileReader()
   fileReader.onload = async event => {
     const CHUNK_SIZE = 1000
-    const chunkCount = Math.round(event.target.result.byteLength / CHUNK_SIZE,0)
-    const fileName = Math.random() * 1000 + newFile.name
+    const chunkCount = Math.round(event.target.result.byteLength / CHUNK_SIZE)
+    const fileName = `${Date.now()}_${newFile.name}`
     for (let chunkId = 0; chunkId < chunkCount + 1; chunkId++) {
       const chunk = event.target.result.slice(
         chunkId * CHUNK_SIZE,
@@ -38,11 +38,10 @@ upload.addEventListener('click', e => {
         body: chunk
       })
       document.getElementById('file-progress').value = Math.round(
-        (chunkId * 100) / chunkCount,
-        0
+        (chunkId * 100) / chunkCount
       )
       document.getElementById('progress-text').textContent =
-        Math.round((chunkId * 100) / chunkCount, 0) + '%'
+        Math.round((chunkId * 100) / chunkCount) + '%'
     }
   }
   fileReader.readAsArrayBuffer(newFile)

@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const fs = require('fs')
+
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res) => {
@@ -11,11 +12,16 @@ app.get('/', (req, res) => {
 
 app.post('/upload', (req, res) => {
   const fileName = req.headers['file-name']
+  const fileDir = `./files`
+  if (!fs.existsSync(fileDir)) {
+    fs.mkdirSync(fileDir, { recursive: true })
+  }
   req.on('data', chunk => {
-    fs.appendFileSync(fileName, chunk)
-    console.log(`received chunk! ${chunk.length}`)
+    fs.appendFileSync(`${fileDir}/${fileName}`, chunk)
   })
-  res.end('uploaded!')
+  return res.status(200).json({
+    message: 'File uploaded successfully.'
+  })
 })
 
 PORT = process.env.PORT || 8100
