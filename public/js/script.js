@@ -16,10 +16,11 @@ function fileDragHover(e) {
 }
 
 function fileSelectHandler(e) {
-  newFile = e.target.files || e.dataTransfer.files
+  var file = e.target.files || e.dataTransfer.files
   fileDragHover(e)
-  for (var i = 0, f; (f = newFile[i]); i++) {
+  for (var i = 0, f; (f = file[i]); i++) {
     parseFile(f)
+    newFile = f
   }
 }
 
