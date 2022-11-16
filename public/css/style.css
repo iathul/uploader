@@ -125,6 +125,10 @@ p {
   display: none;
 }
 
+.uploader #progress-grp.hidden {
+  display: none;
+}
+
 .uploader progress,
 .uploader .progress {
   display: inline;

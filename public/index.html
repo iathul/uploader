@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,19 +8,12 @@
   <title> Uploader </title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <div class="container">
-    <!-- <h3 class="text-center mt-4"> Uploader </h3>
-
-    File <input type="file" id="file">
-    <button id="upload"> Add Files </button>
-    <div id="output"> </div> -->
-    <h2>File Upload & Image Preview</h2>
-    <p class="lead">No Plugins <b>Just Javascript</b></p>
-
-    <!-- Upload  -->
+    <h2 class="mt-4 mb-4">File Upload & Image Preview</h2>
     <form id="file-upload-form" class="uploader">
       <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
 
@@ -27,19 +21,24 @@
         <img id="file-image" src="#" alt="Preview" class="hidden">
         <div id="start">
           <i class="fa fa-download" aria-hidden="true"></i>
-          <div>Select a file or drag here</div>
+          <div>Select a file </div>
           <div id="notimage" class="hidden">Please select an image</div>
           <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
         </div>
+
         <div id="response" class="hidden">
           <div id="messages"></div>
-          <progress class="progress" id="file-progress" value="0">
-            <span>0</span>%
+          <button id="upload" class="btn btn-primary"> Upload File </button>
+        </div>
+        <div id="progress-grp" class="hidden">
+          <progress class="progress" id="file-progress" value="0" max="100">
           </progress>
+          <span id="progress-text"></span>
         </div>
       </label>
     </form>
     <script src="js/script.js"></script>
   </div>
 </body>
+
 </html>
