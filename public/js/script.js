@@ -1,5 +1,4 @@
 const upload = document.getElementById('upload')
-const output = document.getElementById('output')
 var fileSelect = document.getElementById('file-upload')
 var newFile
 fileSelect.addEventListener('change', e => {
