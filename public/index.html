@@ -13,7 +13,7 @@
 
 <body>
   <div class="container">
-    <h2 class="mt-4 mb-4">File Upload & Image Preview</h2>
+    <h2 class="mt-4 mb-4"> Image Upload & Preview</h2>
     <form id="file-upload-form" class="uploader">
       <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
 
@@ -21,11 +21,16 @@
         <img id="file-image" src="#" alt="Preview" class="hidden">
         <div id="start">
           <i class="fa fa-download" aria-hidden="true"></i>
-          <div>Select a file or drag here </div>
-          <div id="notimage" class="hidden">Please select an image</div>
-          <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+          <div id="select-img">Select or drag an image here </div>
+          <div id="notimage" class="hidden mb-0">
+            <p class="text-danger">
+              Please select an image file
+            </p>
+          </div>
+          <div>
+            <span id="file-upload-btn" class="btn btn-primary">Select an image file</span>
+          </div>
         </div>
-
         <div id="response" class="hidden">
           <div id="messages"></div>
         </div>

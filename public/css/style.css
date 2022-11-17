@@ -133,6 +133,10 @@ p {
   display: none;
 }
 
+.uploader #select-img.hidden {
+  display: none;
+}
+
 .uploader progress,
 .uploader .progress {
   display: inline;

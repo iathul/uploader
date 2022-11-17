@@ -39,6 +39,7 @@ function parseFile(file) {
     )} </strong>`
   } else {
     document.getElementById('file-image').classList.add('hidden')
+    document.getElementById('select-img').classList.add('hidden')
     document.getElementById('notimage').classList.remove('hidden')
     document.getElementById('start').classList.remove('hidden')
     document.getElementById('response').classList.add('hidden')
