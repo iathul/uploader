@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <div class="container">
     <h2 class="mt-4 mb-4">File Upload & Image Preview</h2>
@@ -26,7 +28,9 @@
 
         <div id="response" class="hidden">
           <div id="messages"></div>
-          <button id="upload" class="btn btn-primary"> Upload File </button>
+        </div>
+        <div>
+          <button id="upload" class="btn btn-primary hidden"> Upload File </button>
         </div>
         <div id="progress-grp" class="hidden">
           <progress class="progress" id="file-progress" value="0" max="100">
@@ -38,4 +42,5 @@
     <script src="js/script.js"></script>
   </div>
 </body>
+
 </html>

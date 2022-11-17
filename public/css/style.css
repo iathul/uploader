@@ -129,6 +129,10 @@ p {
   display: none;
 }
 
+.uploader #upload.hidden {
+  display: none;
+}
+
 .uploader progress,
 .uploader .progress {
   display: inline;

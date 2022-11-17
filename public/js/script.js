@@ -33,6 +33,7 @@ function parseFile(file) {
     document.getElementById('file-image').classList.remove('hidden')
     document.getElementById('file-image').src = URL.createObjectURL(file)
     document.getElementById('notimage').classList.add('hidden')
+    document.getElementById('upload').classList.remove('hidden')
     document.getElementById('messages').innerHTML = `<strong> ${encodeURI(
       file.name
     )} </strong>`
@@ -68,6 +69,7 @@ async function uploadFile(chunk, fileName) {
 upload.addEventListener('click', e => {
   e.preventDefault()
   document.getElementById('progress-grp').classList.remove('hidden')
+  document.getElementById('upload').classList.add('hidden')
   const fileReader = new FileReader()
   fileReader.onload = async event => {
     const CHUNK_SIZE = 1000
