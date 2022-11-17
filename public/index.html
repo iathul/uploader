@@ -20,7 +20,7 @@
       <label for="file-upload" id="file-drag">
         <img id="file-image" src="#" alt="Preview" class="hidden">
         <div id="start">
-          <i class="fa fa-download" aria-hidden="true"></i>
+          <i class="fa fa-cloud-upload" aria-hidden="true"></i>
           <div id="select-img">Select or drag an image here </div>
           <div id="notimage" class="hidden mb-0">
             <p class="text-danger">
@@ -35,12 +35,16 @@
           <div id="messages"></div>
         </div>
         <div>
-          <button id="upload" class="btn btn-primary hidden"> Upload File </button>
+          <button id="upload" class="btn btn-primary hidden"> Upload Image </button>
         </div>
         <div id="progress-grp" class="hidden">
           <progress class="progress" id="file-progress" value="0" max="100">
           </progress>
           <span id="progress-text"></span>
+        </div>
+        <div id="success" class="hidden">
+          <i class="fa fa-2x fa-check text-success " aria-hidden="true"></i>
+          <span> Image uploaded successfully</span>
         </div>
       </label>
     </form>
