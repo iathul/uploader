@@ -84,7 +84,7 @@ upload.addEventListener('click', e => {
       await uploadFile(chunk, fileName)
       var progressStat = Math.round((chunkId * 100) / chunkCount)
       document.getElementById('file-progress').value = progressStat
-      document.getElementById('progress-text').textContent = `${progressStat} %`
+      document.getElementById('progress-text').textContent = `${progressStat}%`
       if(progressStat == 100) {
         document.getElementById('success').classList.remove('hidden')
       }
