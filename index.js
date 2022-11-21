@@ -38,7 +38,7 @@ app.post('/upload', async (req, res) => {
       })
     fs.unlinkSync(filePath)
     return res.status(200).json({
-      message: 'Image save to cloudinary successfully.',
+      message: 'Image saved to cloudinary successfully.',
       result: result
     })
   } else {
