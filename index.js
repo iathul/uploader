@@ -2,7 +2,6 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const path = require('path')
-const fs = require('fs')
 const cloudinary = require('cloudinary')
 
 cloudinary.config({
@@ -13,40 +12,14 @@ cloudinary.config({
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-const fileDir = `./files`
-if (!fs.existsSync(fileDir)) {
-  fs.mkdirSync(fileDir, { recursive: true })
-}
 
+
+// Home Route
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html')
 })
 
-app.post('/upload', async (req, res) => {
-  const fileName = req.headers['file-name'],
-    chunkId = req.headers['chunk-id'],
-    chunkCount = req.headers['chunk-count']
-
-  req.on('data', chunk => {
-    fs.appendFileSync(`${fileDir}/${fileName}`, chunk)
-  })
-
-  if (chunkId === chunkCount) {
-    const filePath = `${__dirname}/files/${fileName}`,
-      result = await cloudinary.v2.uploader.upload(filePath, {
-        folder: 'project-uploader'
-      })
-    fs.unlinkSync(filePath)
-    return res.status(200).json({
-      message: 'Image saved to cloudinary successfully.',
-      result: result
-    })
-  } else {
-    return res.status(200).json({
-      message: 'Chunk received successfully.'
-    })
-  }
-})
+app.use('/api/file', require('./routes/file'))
 
 PORT = process.env.PORT || 8100
 app.listen(PORT, () => console.log(`Server started at PORT: ${PORT}`))

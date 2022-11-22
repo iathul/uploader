@@ -56,7 +56,7 @@ fileSelect.addEventListener('change', e => {
 
 // Send chunk to server
 async function uploadFile(chunk, fileName, chunkId, chunkCount) {
-  await fetch('http://localhost:8100/upload', {
+  await fetch('http://localhost:8100/api/file/upload', {
     method: 'POST',
     headers: {
       'content-type': 'application/octet-stream',
