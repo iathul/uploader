@@ -76,6 +76,7 @@ upload.addEventListener('click', e => {
   document.getElementById('progress-grp').classList.remove('hidden')
   document.getElementById('upload').classList.add('hidden')
   const fileReader = new FileReader()
+  fileReader.readAsArrayBuffer(newFile)
   fileReader.onload = async event => {
     const CHUNK_SIZE = 1000
     const chunkCount = Math.round(event.target.result.byteLength / CHUNK_SIZE)
@@ -94,5 +95,4 @@ upload.addEventListener('click', e => {
       }
     }
   }
-  fileReader.readAsArrayBuffer(newFile)
 })
