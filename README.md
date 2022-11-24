@@ -35,3 +35,11 @@ uploader will be running  at
 
 ```text
 localhost: PORT
+
+```
+
+## References
+#### [UI reference](https://codepen.io/uixmat/pen/yadZXv)
+
+## Guidelines
+#### [Contribution guidelines](https://github.com/iathul/uploader/blob/master/CONTRIBUTING.md)
