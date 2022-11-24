@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const cloudinary = require('cloudinary')
 
+// Create files dir
 const fileDir = `./files`
 if (!fs.existsSync(fileDir)) {
   fs.mkdirSync(fileDir, { recursive: true })
