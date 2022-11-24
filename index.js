@@ -12,13 +12,12 @@ cloudinary.config({
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-
-
 // Home Route
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html')
 })
 
+// Upload route
 app.use('/api/file', require('./routes/file'))
 
 PORT = process.env.PORT || 8100
