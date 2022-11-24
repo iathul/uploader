@@ -54,9 +54,11 @@ fileSelect.addEventListener('change', e => {
   }
 })
 
+const { protocol, hostname, port } = window.location
+
 // Send chunk to server
 async function uploadFile(chunk, fileName, chunkId, chunkCount) {
-  await fetch('http://localhost:8100/api/file/upload', {
+  await fetch(`${protocol}//${hostname}:${port}/api/file/upload`, {
     method: 'POST',
     headers: {
       'content-type': 'application/octet-stream',
@@ -77,7 +79,6 @@ upload.addEventListener('click', e => {
   fileReader.onload = async event => {
     const CHUNK_SIZE = 1000
     const chunkCount = Math.round(event.target.result.byteLength / CHUNK_SIZE)
-    console.log(chunkCount)
     const fileName = `${Date.now()}_${newFile.name}`
     for (let chunkId = 0; chunkId < chunkCount + 1; chunkId++) {
       const chunk = event.target.result.slice(
@@ -88,7 +89,7 @@ upload.addEventListener('click', e => {
       var progressStat = Math.round((chunkId * 100) / chunkCount)
       document.getElementById('file-progress').value = progressStat
       document.getElementById('progress-text').textContent = `${progressStat}%`
-      if(progressStat == 100) {
+      if (progressStat == 100) {
         document.getElementById('success').classList.remove('hidden')
       }
     }
